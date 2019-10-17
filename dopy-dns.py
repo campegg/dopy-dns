@@ -2,14 +2,14 @@
 
 import os
 import dotenv
-import requests
+import httpx
 
 dotenv.load_dotenv()
 token = os.environ["DO_API_TOKEN"]
 domain = os.environ["DO_DOMAIN"]
 subdomain = os.environ["DO_SUBDOMAIN"]
 records_url = f"https://api.digitalocean.com/v2/domains/{domain}/records/"
-session = requests.Session()
+session = httpx.Client()
 session.headers = {"Authorization": "Bearer " + token}
 
 
