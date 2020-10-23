@@ -14,7 +14,7 @@ session.headers = {"Authorization": "Bearer " + token}
 
 
 def get_current_ip():
-    return requests.get("https://api.ipify.org").text.rstrip()
+    return httpx.get("https://api.ipify.org").text.rstrip()
 
 
 def get_subdomain_info():
@@ -33,7 +33,7 @@ def update_dns():
         print("Subdomain DNS record does not need updating.")
     else:
         response = session.put(
-            records_url + subdomain_record_id, json={"data": current_ip_address}
+            records_url + str(subdomain_record_id), json={"data": current_ip_address}
         )
         if response.ok:
             print("Subdomain IP address updated to " + current_ip_address)
