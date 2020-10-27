@@ -7,7 +7,7 @@ Inspired by [yukicreative](https://github.com/yukicreative)/Jay Vogt's [shell sc
 All of the user-configurable variables - API token, domain, subdomain - are stored in a separate `.env` file alongside the script - see `.env.example`.
 
 ## Instructions:
-1. Install the `dotenv` and `requests` libraries: `$ pip install -r requirements.txt` or `$ pip install python-dotenv requests`
+1. Install the `dotenv` and `httpx` libraries: `$ pip install -r requirements.txt` or `$ pip install python-dotenv requests`
 2. Add the following to `.env`:
   * Your [DigitalOcean API token](https://cloud.digitalocean.com/account/api/tokens)
   * Your top-level domain hosted on the DO nameservers; e.g. `your.com`
