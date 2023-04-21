@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 import os
+from datetime import datetime
+
 import dotenv
 import httpx
-from datetime import datetime
 
 dotenv.load_dotenv()
 token = os.environ["DO_API_TOKEN"]
@@ -31,15 +32,21 @@ def update_dns():
     subdomain_ip_address = subdomain_info["data"]
     subdomain_record_id = subdomain_info["id"]
     if current_ip_address == subdomain_ip_address:
-        print(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " -- Subdomain DNS record does not need updating.")
+        print(
+            f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}: Subdomain DNS record does not need updating."
+        )
     else:
         response = session.put(
             records_url + str(subdomain_record_id), json={"data": current_ip_address}
         )
         if response.ok:
-            print(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " -- Subdomain IP address updated to " + current_ip_address)
+            print(
+                f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}: Subdomain IP address updated to {current_ip_address}"
+            )
         else:
-            print(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " -- IP address update failed with message: " + response.text)
+            print(
+                f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}: IP address update failed with message: {response.text}"
+            )
 
 
 if __name__ == "__main__":
